@@ -1,33 +1,41 @@
-// SearchField.scss
-$primary-color: #007bff;
-$border-color: #ccc;
-$border-radius: 8px;
+@import "../../variables.scss";
 
 .search-field {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex: 1;
   padding: 10px;
-
-  .input {
-    flex: 1;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
-    padding: 10px;
-    margin-right: 10px;
-    width: 100%;
+  gap: 10px;
+  row-gap: 30px;
+  @media screen and (max-width: $medium) {
+    flex-direction: column;
+    align-items: stretch;
   }
+  .search-field-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 
-  .button {
-    padding: 10px 20px;
-    background-color: $primary-color;
-    color: #fff;
+    @media screen and (max-width: $medium) {
+    }
+  }
+  .search-field-button {
+    height: 40px;
+    background-color: $button-color;
+    color: $white-100;
     border: none;
     border-radius: $border-radius;
+    padding: 0 10px;
+    font-size: 14px;
     cursor: pointer;
-
-    &:hover {
-      background-color: darken($primary-color, 10%);
+    &:focus {
+      outline: none;
+      border-color: $button-color;
+    }
+    @media screen and (max-width: $medium) {
+      display: none;
     }
   }
 }

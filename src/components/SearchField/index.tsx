@@ -1,31 +1,34 @@
+import React from "react";
+import { SearchInput } from "../SearchInput";
+import { SelectBox } from "../SelectBox";
+import { useSearchMovie } from "../../hooks";
+import { eOMDBType } from "../../network";
 import "./searchField.scss";
-import { IoSearch } from "react-icons/io5";
+import { YearPicker } from "../YearPicker";
 
-export type SearchFieldProps = {
-  searchTerm?: string;
-  changeSearchTerm: (value: string) => void;
-  handleSearch: () => void;
-};
+export const SearchField = () => {
+  const { changeSearchTerm, changeType, changeYear, handleSearch, options } =
+    useSearchMovie();
 
-export const SearchField = (props: SearchFieldProps) => {
-  const { handleSearch, searchTerm, changeSearchTerm } = props;
   return (
     <div className="search-field">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => changeSearchTerm(e.target.value)}
-        className="input"
+      <SearchInput
+        changeSearchTerm={changeSearchTerm}
+        handleSearch={handleSearch}
+        searchTerm={options.searchTerm}
       />
-      <button
-        onClick={() => {
-          handleSearch();
-        }}
-        className="button"
-      >
-        <IoSearch size={"20px"} />
-      </button>
+      <div className="search-field-filters">
+        <SelectBox options={Object.values(eOMDBType)} onChange={changeType} />
+        <YearPicker onChange={changeYear} />
+        <button
+          className="search-field-button"
+          onClick={() => {
+            handleSearch();
+          }}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };

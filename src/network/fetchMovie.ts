@@ -24,7 +24,7 @@ export const searchMovies = (
         type: type === eOMDBType.ALL ? undefined : type,
         apikey: apiKey,
       });
-      reject("error");
+
       const response = await axios.get(baseUrl, {
         params: params,
       });

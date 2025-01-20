@@ -1,31 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { SearchField, SelectBox } from "../components";
-import { eOMDBType } from "../network";
+import { shallowEqual } from "react-redux";
+import { SearchField } from "../components";
 import { useAppSelector, useSearchMovie } from "../hooks";
 
 export const HomePage = () => {
-  const {
-    changePage,
-    changeSearchTerm,
-    changeType,
-    changeYear,
-    handleSearch,
-    options,
-    searchKey,
-  } = useSearchMovie();
-
+  const { options } = useSearchMovie();
+  const searchKey = useAppSelector(
+    (s) => s.search?.lastSearchKey,
+    shallowEqual
+  );
   const movies = useAppSelector(
-    (s) => s.search?.[searchKey ?? "-"]?.data.result?.Search ?? []
+    (s) => s.search.searchList?.[searchKey ?? "-"]?.data.result?.Search ?? [],
+    shallowEqual
   );
   return (
     <div>
       <h1>OMDb API Example</h1>
-      <SearchField
-        changeSearchTerm={changeSearchTerm}
-        handleSearch={handleSearch}
-        searchTerm={options.searchTerm}
-      />
-      <SelectBox options={Object.values(eOMDBType)} onChange={changeType} />
+      <SearchField />
       <p>{JSON.stringify(options)}</p>
       <ul>
         {movies.map((movie, index) => (

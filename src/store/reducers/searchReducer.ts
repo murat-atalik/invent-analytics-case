@@ -8,26 +8,37 @@ export type SearchItemResponse = {
   options: SearchOptionsType;
 };
 
-export type SearchItemModelDict = Dictionary<SearchItemResponse>;
+export type SearchItemModelDict = {
+  searchList: Dictionary<SearchItemResponse>;
+  lastSearchKey?: string;
+};
 
-const initialState = {} as SearchItemModelDict;
+const initialState = {
+  searchList: {},
+  lastSearchKey: "yes",
+} as SearchItemModelDict;
 
 export const searchSlicer = createSlice({
   name: "search",
   initialState,
   reducers: {
     search_requested: (state, action: PayloadAction<SearchOptionsType>) => {
-      const options = action.payload;
-      const key = generateSearchKey(options);
-      state[key] = {
-        data: {
-          error: undefined,
-          isInit: true,
-          isLoading: true,
-          result: undefined,
-        },
-        options: options,
-      };
+      try {
+        const options = action.payload;
+        const key = generateSearchKey(options);
+        state.searchList[key] = {
+          data: {
+            error: undefined,
+            isInit: true,
+            isLoading: true,
+            result: undefined,
+          },
+          options: options,
+        };
+        state.lastSearchKey = key;
+      } catch (error) {
+        console.log("error", error);
+      }
     },
     search_success: (
       state,
@@ -36,33 +47,43 @@ export const searchSlicer = createSlice({
         data: searchResponseType;
       }>
     ) => {
-      const { options, data } = action.payload;
-      const key = generateSearchKey(options);
-      state[key] = {
-        data: {
-          error: undefined,
-          isInit: false,
-          isLoading: false,
-          result: data,
-        },
-        options: options,
-      };
+      try {
+        const { options, data } = action.payload;
+        const key = generateSearchKey(options);
+
+        state.searchList[key] = {
+          data: {
+            error: undefined,
+            isInit: false,
+            isLoading: false,
+            result: data,
+          },
+          options: options,
+        };
+        state.lastSearchKey = key;
+      } catch (error) {}
     },
     search_failure: (
       state,
       action: PayloadAction<{ options: SearchOptionsType; error: Error }>
     ) => {
-      const { options, error } = action.payload;
-      const key = generateSearchKey(options);
-      state[key] = {
-        data: {
-          error: error.message,
-          isInit: false,
-          isLoading: false,
-          result: undefined,
-        },
-        options: options,
-      };
+      try {
+        const { options, error } = action.payload;
+        const key = generateSearchKey(options);
+
+        state.searchList[key] = {
+          data: {
+            error: error.message,
+            isInit: false,
+            isLoading: false,
+            result: undefined,
+          },
+          options: options,
+        };
+        state.lastSearchKey = key;
+      } catch (error) {
+        console.log("error", error);
+      }
     },
   },
 });

@@ -44,7 +44,6 @@ export const useSearchMovie = () => {
   const handleSearch = useCallback(
     async (fields?: SearchOptionsType) => {
       const _options = fields || options;
-      console.log("_options", _options);
       if (_options.searchTerm?.trim().length > 0) {
         dispatch(searchSlicerActions.search_requested(_options));
 
@@ -63,16 +62,6 @@ export const useSearchMovie = () => {
     [dispatch, options]
   );
 
-  const changePage = useCallback(
-    (page: number) => {
-      setOptions((prevOptions) => {
-        const newOptions = { ...prevOptions, page };
-        handleSearch(newOptions);
-        return newOptions;
-      });
-    },
-    [setOptions, handleSearch]
-  );
   const searchKey = useMemo(() => {
     return generateSearchKey(options);
   }, [options]);
@@ -81,7 +70,6 @@ export const useSearchMovie = () => {
     options,
     setOptions,
     handleSearch,
-    changePage,
     changeSearchTerm,
     changeType,
     changeYear,

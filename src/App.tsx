@@ -1,7 +1,6 @@
 import React from "react";
 import { HomePage, DetailPage } from "./pages";
 import { Link, Route, Routes } from "react-router";
-import "./App.scss";
 
 const App: React.FC = () => {
   return (
