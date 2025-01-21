@@ -51,27 +51,6 @@
     width: 90%;
   }
 
-  &__movies {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 10px;
-    max-width: 90%;
-    margin: auto;
-
-    @media (max-width: 1280px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 580px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
   &__options {
     margin: 20px;
     font-family: monospace;
