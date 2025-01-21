@@ -5,6 +5,7 @@ import { useSearchMovie } from "../../hooks";
 import { eOMDBType } from "../../network";
 import "./searchField.scss";
 import { YearPicker } from "../YearPicker";
+import { IoSearch } from "react-icons/io5";
 
 export const SearchField = () => {
   const { changeSearchTerm, changeType, changeYear, handleSearch, options } =
@@ -26,6 +27,7 @@ export const SearchField = () => {
             handleSearch();
           }}
         >
+          <IoSearch size={"20px"} />
           Search
         </button>
       </div>

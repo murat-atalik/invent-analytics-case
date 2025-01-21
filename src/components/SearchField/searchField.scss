@@ -22,6 +22,10 @@
     }
   }
   .search-field-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-direction: row;
     height: 40px;
     background-color: $button-color;
     color: $white-100;
@@ -29,6 +33,7 @@
     border-radius: $border-radius;
     padding: 0 10px;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     &:focus {
       outline: none;
