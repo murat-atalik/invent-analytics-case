@@ -8,7 +8,7 @@ import { removeUndefinedProperties } from "../utils";
 
 const apiKey = process.env.REACT_APP_OMDB_API_KEY;
 
-const baseUrl = "http://www.omdbapi.com/";
+const baseUrl = "https://www.omdbapi.com/";
 
 export const searchMovies = (
   options: SearchOptionsType
@@ -20,10 +20,11 @@ export const searchMovies = (
       const params = removeUndefinedProperties({
         s: searchTerm,
         y: year === -1 ? undefined : year,
-        p: page,
+        page,
         type: type === eOMDBType.ALL ? undefined : type,
         apikey: apiKey,
       });
+      setTimeout(() => {}, 1000);
 
       const response = await axios.get(baseUrl, {
         params: params,
