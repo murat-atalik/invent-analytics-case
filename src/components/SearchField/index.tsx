@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SearchInput } from "../SearchInput";
 import { SelectBox } from "../SelectBox";
 import { useSearchMovie } from "../../hooks";
@@ -8,8 +8,21 @@ import { IoSearch } from "react-icons/io5";
 import { YearPicker } from "../YearPicker";
 
 export const SearchField = () => {
-  const { changeSearchTerm, changeType, changeYear, handleSearch, options } =
-    useSearchMovie();
+  const {
+    changeSearchTerm,
+    changeType,
+    changeYear,
+    handleSearch,
+    options,
+    lastSearchKey,
+  } = useSearchMovie();
+
+  // useEffect(() => {
+  //   if (options.searchTerm === "" && lastSearchKey === "") {
+  //     changeSearchTerm("pokemon");
+  //     handleSearch({ searchTerm: "pokemon", page: 1 });
+  //   }
+  // }, []);
 
   return (
     <div className="search-field">

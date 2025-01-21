@@ -15,7 +15,7 @@ export type SearchItemModelDict = {
 
 const initialState = {
   searchList: {},
-  lastSearchKey: "yes",
+  lastSearchKey: "",
 } as SearchItemModelDict;
 
 export const searchSlicer = createSlice({

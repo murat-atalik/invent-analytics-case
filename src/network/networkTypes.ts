@@ -4,20 +4,20 @@ export enum eOMDBType {
   SERIES = "series",
   EPISODE = "episode",
 }
-export interface searchResponseType {
+export type searchResponseType = {
   Search: SearchItemType[];
   totalResults: string;
   Response: string;
   Error?: string;
-}
+};
 
-export interface SearchItemType {
+export type SearchItemType = {
   Title: string;
   Year: string;
   imdbID: string;
   Type: eOMDBType;
   Poster: string;
-}
+};
 
 export type Rating = {
   Source: string;

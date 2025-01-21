@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import "./movieCard.scss";
 import { eOMDBType, SearchItemType } from "../../network";
@@ -8,20 +8,18 @@ import defaultImage from "../../assets/images/default-movie.jpg";
 export const MovieCard = (props: SearchItemType) => {
   const { Poster, Title, Type, Year, imdbID } = props;
 
-  let icon;
-  switch (Type) {
-    case eOMDBType.MOVIE:
-      icon = "🎬";
-      break;
-    case eOMDBType.SERIES:
-      icon = "📺";
-      break;
-    case eOMDBType.EPISODE:
-      icon = "📖";
-      break;
-    default:
-      icon = "";
-  }
+  const icon = useMemo(() => {
+    switch (Type) {
+      case eOMDBType.MOVIE:
+        return "🎬";
+      case eOMDBType.SERIES:
+        return "📺";
+      case eOMDBType.EPISODE:
+        return "📖";
+      default:
+        return undefined;
+    }
+  }, [Type]);
 
   return (
     <Link to={`/detail/${imdbID}`} className="card">
@@ -39,7 +37,11 @@ export const MovieCard = (props: SearchItemType) => {
           {Title} ({Year})
         </h2>
       </div>
-      <div className="card__icon">{icon}</div>
+      {icon && <div className="card__icon">{icon}</div>}
+      <div className="card__imdb">
+        <div className="card__imdb__gradient" />
+        {imdbID}
+      </div>
     </Link>
   );
 };

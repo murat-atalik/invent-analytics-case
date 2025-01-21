@@ -7,8 +7,12 @@ import { shallowEqual } from "react-redux";
 
 export const useSearchMovie = () => {
   const dispatch = useAppDispatch();
+  const lastSearchKey = useAppSelector(
+    (state) => state.search.lastSearchKey,
+    shallowEqual
+  );
+
   const lastOptions = useAppSelector((state) => {
-    const lastSearchKey = state.search.lastSearchKey;
     const options = state.search.searchList[lastSearchKey ?? "-"]?.options;
     return { searchTerm: "", ...options } as SearchOptionsType;
   }, shallowEqual);
@@ -79,5 +83,6 @@ export const useSearchMovie = () => {
     changeType,
     changeYear,
     searchKey,
+    lastSearchKey,
   };
 };

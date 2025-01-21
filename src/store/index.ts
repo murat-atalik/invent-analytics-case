@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { searchSlicerReducer } from "./reducers";
+import { detailSliceReducer, searchSlicerReducer } from "./reducers";
 
 export const store = configureStore({
   reducer: {
     search: searchSlicerReducer,
+    detail: detailSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
