@@ -1,18 +1,10 @@
 import React from "react";
 import { HomePage, DetailPage } from "./pages";
-import { Link, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <nav>
-        <div className="button">
-          <Link to="/">Home</Link>{" "}
-        </div>
-        <div className="button">
-          <Link to="/detail">About</Link>
-        </div>
-      </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/detail" element={<DetailPage />} />

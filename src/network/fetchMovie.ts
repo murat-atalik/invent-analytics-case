@@ -19,7 +19,7 @@ export const searchMovies = (
 
       const params = removeUndefinedProperties({
         s: searchTerm,
-        y: year,
+        y: year === -1 ? undefined : year,
         p: page,
         type: type === eOMDBType.ALL ? undefined : type,
         apikey: apiKey,

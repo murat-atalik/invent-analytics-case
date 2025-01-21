@@ -4,9 +4,9 @@ import { useAppSelector, useSearchMovie } from "../../hooks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import image from "../../assets/backgrounds/back.png";
 import "./homePage.scss";
+import { MovieCard } from "../../components/MovieCard";
 
 export const HomePage = () => {
-  const { options } = useSearchMovie();
   const searchKey = useAppSelector(
     (s) => s.search?.lastSearchKey,
     shallowEqual
@@ -17,29 +17,26 @@ export const HomePage = () => {
   );
   return (
     <div className="homepage">
-      <div className="homepage__banner">
-        <LazyLoadImage
-          className="homepage__banner-image"
-          alt={"background"}
-          src={image}
-        />
-        <div className="homepage__banner-gradient" />
+      <div className="homepage__header">
+        <div className="homepage__banner">
+          <LazyLoadImage
+            className="homepage__banner-image"
+            alt={"background"}
+            src={image}
+          />
+          <div className="homepage__banner-gradient" />
+        </div>
+
         <div className="homepage__search">
           <SearchField />
         </div>
       </div>
 
-      <p className="homepage__options">{JSON.stringify(options)}</p>
-      <ul className="homepage__movies">
+      <div className="homepage__movies">
         {movies.map((movie, index) => (
-          <li key={index}>
-            <h2>
-              {movie.Title} ({movie.Year})
-            </h2>
-            <img src={movie.Poster} alt={movie.Title} />
-          </li>
+          <MovieCard key={movie.imdbID} {...movie} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

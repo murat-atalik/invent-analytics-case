@@ -4,8 +4,8 @@ import { SelectBox } from "../SelectBox";
 import { useSearchMovie } from "../../hooks";
 import { eOMDBType } from "../../network";
 import "./searchField.scss";
-import { YearPicker } from "../YearPicker";
 import { IoSearch } from "react-icons/io5";
+import { YearPicker } from "../YearPicker";
 
 export const SearchField = () => {
   const { changeSearchTerm, changeType, changeYear, handleSearch, options } =
