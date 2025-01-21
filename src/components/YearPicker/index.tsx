@@ -4,6 +4,7 @@ import { IoChevronDown } from "react-icons/io5";
 
 type YearPickerProps = {
   onChange: (selectedYear: number) => void;
+  value: number;
 };
 
 const currentYear = new Date().getFullYear();
@@ -13,9 +14,8 @@ const years = [
 ];
 
 export const YearPicker = (props: YearPickerProps) => {
-  const { onChange } = props;
+  const { onChange, value } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<number>(years[0]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -23,7 +23,6 @@ export const YearPicker = (props: YearPickerProps) => {
 
   const handleOptionClick = useCallback(
     (year: number) => {
-      setSelectedYear(year);
       onChange(year);
       setIsOpen(false);
     },
@@ -49,9 +48,7 @@ export const YearPicker = (props: YearPickerProps) => {
   return (
     <div className="yearPicker">
       <label
-        className={`yearPicker__label ${
-          isOpen || selectedYear !== -1 ? "float" : ""
-        }`}
+        className={`yearPicker__label ${isOpen || value !== -1 ? "float" : ""}`}
       >
         Select Year
       </label>
@@ -59,9 +56,7 @@ export const YearPicker = (props: YearPickerProps) => {
         className={`yearPicker__button ${isOpen ? "yearPickerOpen" : ""}`}
         onClick={toggleDropdown}
       >
-        <span>
-          {selectedYear === -1 ? `${isOpen ? "All" : ""}` : selectedYear}
-        </span>
+        <span>{value === -1 ? `${isOpen ? "All" : ""}` : value}</span>
         <IoChevronDown
           className={`yearPicker__icon ${isOpen ? "rotate" : ""}`}
           size={"14px"}

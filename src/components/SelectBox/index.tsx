@@ -5,13 +5,13 @@ import { IoChevronDown } from "react-icons/io5";
 
 type SelectBoxProps = {
   options: eOMDBType[];
+  value: eOMDBType;
   onChange: (selectedType: eOMDBType) => void;
 };
 
 export const SelectBox = (props: SelectBoxProps) => {
-  const { options, onChange } = props;
+  const { options, onChange, value } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState<eOMDBType>(options[0]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -19,7 +19,6 @@ export const SelectBox = (props: SelectBoxProps) => {
 
   const handleOptionClick = useCallback(
     (type: eOMDBType) => {
-      setSelectedType(type);
       onChange(type);
       setIsOpen(false);
     },
@@ -46,7 +45,7 @@ export const SelectBox = (props: SelectBoxProps) => {
     <div className="customSelectBox">
       <label
         className={`customSelectBox__label ${
-          isOpen || selectedType !== eOMDBType.ALL ? "float" : ""
+          isOpen || value !== eOMDBType.ALL ? "float" : ""
         }`}
       >
         Select Type
@@ -58,9 +57,9 @@ export const SelectBox = (props: SelectBoxProps) => {
         onClick={toggleDropdown}
       >
         <span>
-          {selectedType === eOMDBType.ALL
+          {value === eOMDBType.ALL
             ? ""
-            : selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
+            : value.charAt(0).toUpperCase() + value.slice(1)}
         </span>
         <IoChevronDown
           className={`customSelectBox__icon ${isOpen ? "rotate" : ""}`}

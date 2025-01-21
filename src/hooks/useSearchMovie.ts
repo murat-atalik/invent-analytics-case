@@ -1,14 +1,19 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { searchSlicerActions } from "../store/reducers";
-import { useAppDispatch } from "./storeHooks";
+import { useAppDispatch, useAppSelector } from "./storeHooks";
 import { eOMDBType, searchMovies, SearchOptionsType } from "../network";
 import { generateSearchKey } from "../utils";
+import { shallowEqual } from "react-redux";
 
 export const useSearchMovie = () => {
   const dispatch = useAppDispatch();
+  const lastOptions = useAppSelector((state) => {
+    const lastSearchKey = state.search.lastSearchKey;
+    const options = state.search.searchList[lastSearchKey ?? "-"]?.options;
+    return { searchTerm: "", ...options } as SearchOptionsType;
+  }, shallowEqual);
   const [options, setOptions] = useState<SearchOptionsType>({
-    searchTerm: "",
-    page: 1,
+    ...lastOptions,
   });
 
   const changeYear = useCallback(
@@ -43,7 +48,7 @@ export const useSearchMovie = () => {
 
   const handleSearch = useCallback(
     async (fields?: SearchOptionsType) => {
-      const _options = fields || options;
+      const _options = { ...(fields || options), page: 1 };
       if (_options.searchTerm?.trim().length > 0) {
         dispatch(searchSlicerActions.search_requested(_options));
 

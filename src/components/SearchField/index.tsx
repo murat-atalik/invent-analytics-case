@@ -19,8 +19,12 @@ export const SearchField = () => {
         searchTerm={options.searchTerm}
       />
       <div className="search-field-filters">
-        <SelectBox options={Object.values(eOMDBType)} onChange={changeType} />
-        <YearPicker onChange={changeYear} />
+        <SelectBox
+          options={Object.values(eOMDBType)}
+          onChange={changeType}
+          value={options.type ?? eOMDBType.ALL}
+        />
+        <YearPicker onChange={changeYear} value={options.year ?? -1} />
         <button
           className="search-field-button"
           onClick={() => {
