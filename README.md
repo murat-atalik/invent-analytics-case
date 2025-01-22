@@ -94,7 +94,6 @@ invent-analytics-case/
 │   ├── components/     # Reusable components
 │   ├── pages/          # Page components
 │   ├── store/          # Redux store configuration
-│   ├── styles/         # SASS/SCSS stylesheets
 │   ├── utils/          # Utility functions
 │   ├── App.tsx         # Main app component
 │   └── index.tsx       # Entry point
