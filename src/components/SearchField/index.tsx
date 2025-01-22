@@ -22,6 +22,7 @@ export const SearchField = () => {
       changeSearchTerm("pokemon");
       handleSearch({ searchTerm: "pokemon", page: 1 });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastSearchKey]);
 
   return (

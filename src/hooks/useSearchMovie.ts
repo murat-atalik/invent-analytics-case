@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { searchSlicerActions } from "../store/reducers";
 import { useAppDispatch, useAppSelector } from "./storeHooks";
 import { eOMDBType, searchMovies, SearchOptionsType } from "../network";

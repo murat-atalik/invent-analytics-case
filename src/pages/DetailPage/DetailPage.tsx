@@ -5,7 +5,6 @@ import { useGetMovie } from "../../hooks/useGetMovie";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./detailPage.scss";
 import image from "../../assets/backgrounds/detail.png";
-import { shallowEqual } from "react-redux";
 import { CustomPoster } from "../../components/CustomPoster";
 import { upperCaseFirstLetter } from "../../utils/upperCaseFirstLetter";
 import {
