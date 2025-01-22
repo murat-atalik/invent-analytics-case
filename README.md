@@ -1,46 +1,128 @@
-# Getting Started with Create React App
+# Invent Analytics Frontend Developer Case
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Single Page Application (SPA) developed using React for listing and viewing details of movies. The application uses the OMDb API to fetch movie data.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Movie Listing**: Displays movies in a grid/table format with columns for name, release date, and IMDb ID.
+- **Search**: Search movies by name, with "Pokemon" as the default search.
+- **Pagination**: Displays 10 movies per page.
+- **Year Filter**: Filter movies by release year.
+- **Type Filter**: Filter by movies, TV series, or TV episodes.
+- **Details View**: Redirects to a detailed page for the selected movie, displaying:
+  - Poster
+  - Title
+  - Duration
+  - Genre
+  - Director
+  - Cast
+  - IMDb Rating
+- **Responsive Design**: Optimized for different screen sizes.
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Check out the live demo:  
+[Invent Analytics Case Demo](https://invent-analytics-case-git-main-muratataliks-projects.vercel.app)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend Framework**: React (with TypeScript)
+- **State Management**: Redux Toolkit
+- **Styling**: SASS/SCSS
+- **HTTP Client**: Axios
+- **Routing**: React Router
+- **Icons**: React Icons
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+Follow the steps below to set up the project locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/murat-atalik/invent-analytics-case.git
+   cd invent-analytics-case
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies:**
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Add an OMDb API Key:**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Visit [OMDb API](https://www.omdbapi.com/apikey.aspx) and generate an API key.
+   - Create a `.env` file in the project root and add the following line:
+     ```bash
+     REACT_APP_OMDB_API_KEY=your_api_key_here
+     ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. **Start the development server:**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```bash
+   npm start
+   ```
 
-## Learn More
+5. Open your browser and navigate to `http://localhost:3000`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Start**: Runs the app in development mode.
+  ```bash
+  npm start
+  ```
+- **Build**: Builds the app for production.
+  ```bash
+  npm run build
+  ```
+- **Test**: Launches the test runner.
+  ```bash
+  npm test
+  ```
+- **Eject**: Ejects the app configuration. (Use with caution!)
+  ```bash
+  npm run eject
+  ```
+
+## File Structure
+
+```
+invent-analytics-case/
+├── public/             # Public assets
+├── src/
+│   ├── components/     # Reusable components
+│   ├── pages/          # Page components
+│   ├── store/          # Redux store configuration
+│   ├── styles/         # SASS/SCSS stylesheets
+│   ├── utils/          # Utility functions
+│   ├── App.tsx         # Main app component
+│   └── index.tsx       # Entry point
+├── .env                # Environment variables
+├── package.json        # Project dependencies and scripts
+└── README.md           # Project documentation
+```
+
+## Dependencies
+
+**Key Libraries:**
+
+- `react`: Frontend framework
+- `@reduxjs/toolkit`: State management
+- `axios`: API requests
+- `sass`: CSS preprocessor
+- `react-router-dom`: Routing
+- `react-icons`: Icons
+
+## DevDependencies
+
+- TypeScript typings for React, Redux, and other libraries
+- Babel plugins for modern JavaScript support
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to contribute by submitting issues or pull requests! 😊

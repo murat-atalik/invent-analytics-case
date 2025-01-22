@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  DetailResponse,
   eOMDBType,
   SearchOptionsType,
   searchResponseType,
@@ -24,7 +25,6 @@ export const searchMovies = (
         type: type === eOMDBType.ALL ? undefined : type,
         apikey: apiKey,
       });
-      setTimeout(() => {}, 1000);
 
       const response = await axios.get(baseUrl, {
         params: params,
@@ -40,6 +40,27 @@ export const searchMovies = (
         Search: [],
         totalResults: "0",
       } as searchResponseType);
+    }
+  });
+};
+
+export const getMovie = (id: string): Promise<DetailResponse> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios.get(baseUrl, {
+        params: {
+          i: id,
+          plot: "full",
+          apikey: apiKey,
+        },
+      });
+      const data = response.data as DetailResponse;
+      if (data.Error) {
+        reject(new Error(data.Error));
+      }
+      resolve(data);
+    } catch (error: any) {
+      reject(new Error("Failed to fetch movie"));
     }
   });
 };

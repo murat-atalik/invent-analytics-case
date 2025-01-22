@@ -54,16 +54,18 @@ export const searchSlicer = createSlice({
         state.searchList[key] = {
           data: {
             error: undefined,
-            isInit: false,
             isLoading: false,
+            isInit: true,
             result: data,
           },
           options: options,
         };
         state.lastSearchKey = key;
-      } catch (error) {}
+      } catch (error) {
+        console.log("error", error);
+      }
     },
-    search_failure: (
+    search_failed: (
       state,
       action: PayloadAction<{ options: SearchOptionsType; error: Error }>
     ) => {
@@ -74,7 +76,7 @@ export const searchSlicer = createSlice({
         state.searchList[key] = {
           data: {
             error: error.message,
-            isInit: false,
+            isInit: true,
             isLoading: false,
             result: undefined,
           },

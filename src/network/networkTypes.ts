@@ -19,6 +19,32 @@ export type SearchItemType = {
   Poster: string;
 };
 
+export type PartialDetailResponse = {
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Ratings: Rating[];
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  DVD: string;
+  BoxOffice: string;
+  Production: string;
+  Website: string;
+  Response: string;
+  Error?: string;
+};
+
+export type DetailResponse = SearchItemType & PartialDetailResponse;
+
 export type Rating = {
   Source: string;
   Value: string;

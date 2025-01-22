@@ -17,12 +17,12 @@ export const SearchField = () => {
     lastSearchKey,
   } = useSearchMovie();
 
-  // useEffect(() => {
-  //   if (options.searchTerm === "" && lastSearchKey === "") {
-  //     changeSearchTerm("pokemon");
-  //     handleSearch({ searchTerm: "pokemon", page: 1 });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (lastSearchKey === "") {
+      changeSearchTerm("pokemon");
+      handleSearch({ searchTerm: "pokemon", page: 1 });
+    }
+  }, [lastSearchKey]);
 
   return (
     <div className="search-field">

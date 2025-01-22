@@ -63,7 +63,7 @@ export const useSearchMovie = () => {
           );
         } catch (error: Error | any) {
           dispatch(
-            searchSlicerActions.search_failure({ error, options: _options })
+            searchSlicerActions.search_failed({ error, options: _options })
           );
         }
       }
